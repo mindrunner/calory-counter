@@ -1,0 +1,460 @@
+\usepackage{fancyhdr} % For special header and footer formatting
+%\usepackage[T1]{fontenc} % Correct font encoding
+%\usepackage[utf8]{inputenc} % Input encoding utf8
+\usepackage{xltxtra}
+\usepackage{xunicode}
+\defaultfontfeatures{Ligatures=TeX}
+\usepackage{mathpazo}
+\usepackage{mathptmx}
+\usepackage{url}
+%\usepackage[ngerman]{translator} % using translator for glossaries and other packages
+\usepackage{cmbright} % Using computer modern bright font family .. more warnings than Helvetica
+%\usepackage[english, mongolian]{babel}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{MnSymbol}
+\usepackage{cite}
+\usepackage[colorlinks=true, breaklinks=true, linkcolor=HKS41-100, menucolor=darkblue, urlcolor=darkblue]{hyperref} % use hyperref for links with color
+\usepackage{graphicx} % Use graphics via \includegraphics
+\usepackage{stmaryrd}
+%\usepackage{CJK}
+\usepackage{CJKutf8}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{abbrevs}
+\usepackage{xkeyval}
+\usepackage[toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
+\usepackage{float}
+\usepackage[colorinlistoftodos,prependcaption,linecolor=black,backgroundcolor=green,bordercolor=black]{todonotes}
+%\presetkeys{todonotes}{inline,caption=todo}{}
+\presetkeys{todonotes}{caption=-}{}
+\usepackage{epsfig}
+\usepackage{esint}
+\usepackage{xcolor} % enhanced color package, replaces color-package
+%\usepackage[arrow,matrix,curve]{xy} % xy geometry for drawing
+%\usepackage[left=3cm,right=2cm,top=2cm,bottom=2.5cm]{geometry}
+%\usepackage{appendix} % appendix support
+%\usepackage{colortbl}
+\usepackage{listings}
+\lstset{basicstyle=\scriptsize, numbers=left, numberstyle=\tiny, stringstyle=\ttfamily, showstringspaces=true, tabsize=1, escapeinside={(*@}{@*)}}
+\lstloadlanguages{ML}
+\lstset{language=ML}
+%\renewcommand{\lstlistingname}{Quelltext}
+%\addto\extrasngerman{
+%\def\lstlistingautorefname{Quelltext}
+%\def\lstnumberautorefname{Zeile}}
+\newcommand{\code}[1]{\texttt{#1}}
+\usepackage{multicol} % multicolumns
+\usepackage{shadethm} % theorems with shadow
+%\usepackage{thmbox} % theorems with special boxes .. see http://www.jkrieger.de/tools/latex/mathsimple.html
+\usepackage{enumitem} % for better enumerations
+%\usepackage{multind} % Indexregister via \index{}, \makeindex{}, \printindex{}
+%\usepackage{index}
+\usepackage{lastpage} % For counting to last page and probably several other things
+\usepackage{ulem} % For correct underlining in breaking lines
+\usepackage{tikz}
+\usepackage{calc}%    For the \widthof macro
+\usetikzlibrary{automata,positioning,calc}
+%\usepackage{scalefnt} % \scalefont{2} selects the current font in twice the current 
+		      % size. \scalefont{.75} reduces the current font size by three quarters. 
+\usepackage{ifthen}
+%\usepackage{pdflscape}
+\usepackage{xspace} % for xspaces in new commands
+%\usepackage{longtable} % longtables for tables over multiple pages
+
+%\usepackage[toc]{glossaries}
+%\renewcommand*{\glspostdescription}{}
+%\addto\captionsngerman{\renewcommand{\refname}{Quellenverzeichnis}}
+%\renewcommand*{\glossaryname}{Glossar}
+%\renewcommand*\listfigurename{Abbildungsverzeichnis}
+%\renewcommand*{\glossarypreamble}{%
+%	  \label{gls:\currentglossary}%
+%	}
+%\usepackage{pst-barcode}
+%\usepackage{auto-pst-pdf}
+%\usepackage{blindtext}
+%\usepackage{overpic}
+\usepackage{tabularx}
+%\usepackage{eurosym}
+
+\newboolean{isvc}
+\InputIfFileExists{vc.tex}{\setboolean{isvc}{true}}{\setboolean{isvc}{false}}
+
+% ____________________
+% |                   |
+% |     Commands      |
+% |                   |
+% |    individual     |
+% |     commands      |
+% |___________________|
+%
+
+\newcommand{\inputown}[1]{\input{content/\projectName/#1}}
+\newcommand{\inputcommon}[1]{\input{content/common/#1}}
+\newcommand{\inputdata}[1]{\input{content/data/#1}}
+\newcommand{\qr}[1]{\begin{pspicture} (1,1)\psbarcode[linecolor=black]{#1}{height=0.8 width=0.8}{qrcode}\end{pspicture}}
+
+%
+% Text & Math
+%
+\renewcommand{\b}[1]{\textbf{#1}} % fetter Text
+\renewcommand{\i}[1]{\textit{#1}} % kursiver Text
+\newcommand{\ul}[1]{\uline{#1}} % unterstrichen
+
+\newcommand{\N}[0]{\mathbb{N}} % natürliche Zahlen
+\newcommand{\Z}[0]{\mathbb{Z}} % ganze Zahlen
+\newcommand{\Q}[0]{\mathbb{Q}} % rationale Zahlen
+\newcommand{\R}[0]{\mathbb{R}} % reelle Zahlen
+%\newcommand{\C}[0]{\mathbb{C}} % komplexe Zahlen
+\newcommand{\F}[0]{\mathbb{F}} % Feld (field)
+\newcommand{\Ls}[0]{\mathbb{L}} % Lösungsmenge
+\newcommand{\A}[0]{\mathbb{A}}
+
+\newcommand{\os}[2]{\overset{#1}{#2}} %
+\newcommand{\fr}[2]{\frac{#1}{#2}} % Bruch
+\newcommand{\ol}[1]{\overline{#1}} % Überstrich
+\newcommand{\ola}[0]{\ol{a}} 
+\newcommand{\olb}[0]{\ol{b}}
+\newcommand{\olc}[0]{\ol{c}}
+\newcommand{\old}[0]{\ol{d}}
+\newcommand{\ole}[0]{\ol{e}}
+\newcommand{\olf}[0]{\ol{f}}
+\newcommand{\oli}[0]{\ol{i}}
+\newcommand{\olj}[0]{\ol{j}}
+\newcommand{\tl}[1]{\tilde{#1}} % Schlange
+\newcommand{\Ra}[0]{\Rightarrow} % doppelter Rechtspfeil
+\newcommand{\ra}[0]{\rightarrow} % einfacher Rechtspfeil
+\newcommand{\La}[0]{\Leftarrow} % doppelter Linkspfeil
+\newcommand{\la}[0]{\leftarrow} % einfacher Linksfpeil
+\newcommand{\Lra}[0]{\Leftrightarrow} % doppelter Links-Rechtspfeil
+\newcommand{\lra}[0]{\leftrightarrow} % einfacher Links-Rechtspfeil
+\newcommand{\mt}[0]{\mapsto} % Pfeil für Abbildungen
+\newcommand{\orar}[1]{\overrightarrow{#1}} 
+\newcommand{\olar}[1]{\overleftarrow{#1}}
+\newcommand{\s}[1]{\langle #1 \rangle} % Skalaprodukt
+\newcommand{\ma}[0]{\measuredangle} % Winkelzeichen
+\newcommand{\ve}[1]{\left(\begin{array}{c} #1 \end{array} \right)}
+\newcommand{\ls}[1]{ ($S$#1)}
+\newcommand{\sd}[0]{\backslash}
+%\newcommand{\f}[2]{\begin{matrix} #1 \\ #2 \end{matrix}}
+\renewcommand{\cupdot}{\makebox[0pt]{\quad \! $\cdot$} \cup}
+\newcommand{\class}[1]{\i{#1}}
+\newcommand{\interface}[1]{\i{#1}}
+
+\newcommand{\mb}[1]{\mathbb{#1}}
+
+\newcommand{\mf}[1]{\mathfrak{#1}}
+\newcommand{\mfA}[0]{\mathfrak{A}}
+\newcommand{\mfB}[0]{\mathfrak{B}}
+\newcommand{\mfC}[0]{\mathfrak{C}}
+\newcommand{\mfD}[0]{\mathfrak{D}}
+\newcommand{\mfI}[0]{\mathfrak{I}}
+\newcommand{\mfM}[0]{\mathfrak{M}}
+\newcommand{\mfP}[0]{\mathfrak{P}}
+\newcommand{\mfT}[0]{\mathfrak{T}}
+\newcommand{\mfX}[0]{\mathfrak{X}}
+\newcommand{\mfE}[0]{\mathfrak{E}}
+
+\newcommand{\mc}[1]{\mathcal{#1}}
+\newcommand{\mcA}[0]{\mathcal{A}}
+\newcommand{\mcB}[0]{\mathcal{B}}
+\newcommand{\mcC}[0]{\mathcal{C}}
+\newcommand{\mcD}[0]{\mathcal{D}}
+\newcommand{\mcI}[0]{\mathcal{I}}
+\newcommand{\mcM}[0]{\mathcal{M}}
+\newcommand{\mcP}[0]{\mathcal{P}}
+\newcommand{\mcT}[0]{\mathcal{T}}
+\newcommand{\mcX}[0]{\mathcal{X}}
+\newcommand{\mcE}[0]{\mathcal{E}}
+
+%
+% Colors & Font Formatting
+%
+\newcommand{\changefont}[3]{\fontfamily{#1} \fontseries{#2} \fontshape{#3} \selectfont} % change format easier
+
+    \definecolor{HKS41-100}{cmyk}{1.0, 0.7, 0.1, 0.5}
+    \definecolor{HKS41-90}{cmyk}{0.9, 0.63, 0.09, 0.45}
+    \definecolor{HKS41-80}{cmyk}{0.8, 0.56, 0.08, 0.4}
+    \definecolor{HKS41-70}{cmyk}{0.7, 0.49, 0.07, 0.35}
+    \definecolor{HKS41-60}{cmyk}{0.6, 0.42, 0.06, 0.3}
+    \definecolor{HKS41-50}{cmyk}{0.5, 0.35, 0.05, 0.25}
+    \definecolor{HKS41-40}{cmyk}{0.4, 0.28, 0.04, 0.2}
+    \definecolor{HKS41-30}{cmyk}{0.3, 0.21, 0.03, 0.15}
+    \definecolor{HKS41-20}{cmyk}{0.2, 0.14, 0.02, 0.1}
+    \definecolor{HKS41-10}{cmyk}{0.1, 0.07, 0.01, 0.05}
+    \definecolor{HKS44-100}{cmyk}{1.0, 0.5, 0.0, 0.0}
+    \definecolor{HKS44-90}{cmyk}{0.9, 0.45, 0.0, 0.0}
+    \definecolor{HKS44-80}{cmyk}{0.8, 0.4, 0.0, 0.0}
+    \definecolor{HKS44-70}{cmyk}{0.7, 0.35, 0.0, 0.0}
+    \definecolor{HKS44-60}{cmyk}{0.6, 0.3, 0.0, 0.0}
+    \definecolor{HKS44-50}{cmyk}{0.5, 0.25, 0.0, 0.0}
+    \definecolor{HKS44-40}{cmyk}{0.4, 0.2, 0.0, 0.0}
+    \definecolor{HKS44-30}{cmyk}{0.3, 0.15, 0.0, 0.0}
+    \definecolor{HKS44-20}{cmyk}{0.2, 0.1, 0.0, 0.0}
+    \definecolor{HKS44-10}{cmyk}{0.1, 0.05, 0.0, 0.0}
+    \definecolor{HKS36-100}{cmyk}{0.8, 0.9, 0.0, 0.0}
+    \definecolor{HKS36-90}{cmyk}{0.72, 0.81, 0.0, 0.0}
+    \definecolor{HKS36-80}{cmyk}{0.64, 0.72, 0.0, 0.0}
+    \definecolor{HKS36-70}{cmyk}{0.56, 0.63, 0.0, 0.0}
+    \definecolor{HKS36-60}{cmyk}{0.48, 0.54, 0.0, 0.0}
+    \definecolor{HKS36-50}{cmyk}{0.4, 0.45, 0.0, 0.0}
+    \definecolor{HKS36-40}{cmyk}{0.32, 0.36, 0.0, 0.0}
+    \definecolor{HKS36-30}{cmyk}{0.24, 0.27, 0.0, 0.0}
+    \definecolor{HKS36-20}{cmyk}{0.16, 0.18, 0.0, 0.0}
+    \definecolor{HKS36-10}{cmyk}{0.08, 0.09, 0.0, 0.0}
+    \definecolor{HKS33-100}{cmyk}{0.5, 1.0, 0.0, 0.0}
+    \definecolor{HKS33-90}{cmyk}{0.45, 0.9, 0.0, 0.0}
+    \definecolor{HKS33-80}{cmyk}{0.4, 0.8, 0.0, 0.0}
+    \definecolor{HKS33-70}{cmyk}{0.35, 0.7, 0.0, 0.0}
+    \definecolor{HKS33-60}{cmyk}{0.3, 0.6, 0.0, 0.0}
+    \definecolor{HKS33-50}{cmyk}{0.25, 0.5, 0.0, 0.0}
+    \definecolor{HKS33-40}{cmyk}{0.2, 0.4, 0.0, 0.0}
+    \definecolor{HKS33-30}{cmyk}{0.15, 0.3, 0.0, 0.0}
+    \definecolor{HKS33-20}{cmyk}{0.1, 0.2, 0.0, 0.0}
+    \definecolor{HKS33-10}{cmyk}{0.05, 0.1, 0.0, 0.0}
+    \definecolor{HKS57-100}{cmyk}{1.0, 0.0, 0.9, 0.2}
+    \definecolor{HKS57-90}{cmyk}{0.9, 0.0, 0.81, 0.18}
+    \definecolor{HKS57-80}{cmyk}{0.8, 0.0, 0.72, 0.16}
+    \definecolor{HKS57-70}{cmyk}{0.7, 0.0, 0.63, 0.14}
+    \definecolor{HKS57-60}{cmyk}{0.6, 0.0, 0.54, 0.12}
+    \definecolor{HKS57-50}{cmyk}{0.5, 0.0, 0.45, 0.1}
+    \definecolor{HKS57-40}{cmyk}{0.4, 0.0, 0.36, 0.08}
+    \definecolor{HKS57-30}{cmyk}{0.3, 0.0, 0.27, 0.06}
+    \definecolor{HKS57-20}{cmyk}{0.2, 0.0, 0.18, 0.04}
+    \definecolor{HKS57-10}{cmyk}{0.1, 0.0, 0.09, 0.02}
+    \definecolor{HKS65-100}{cmyk}{0.65, 0.0, 1.0, 0.0}
+    \definecolor{HKS65-90}{cmyk}{0.585, 0.0, 0.9, 0.0}
+    \definecolor{HKS65-80}{cmyk}{0.52, 0.0, 0.8, 0.0}
+    \definecolor{HKS65-70}{cmyk}{0.455, 0.0, 0.7, 0.0}
+    \definecolor{HKS65-60}{cmyk}{0.39, 0.0, 0.6, 0.0}
+    \definecolor{HKS65-50}{cmyk}{0.325, 0.0, 0.5, 0.0}
+    \definecolor{HKS65-40}{cmyk}{0.26, 0.0, 0.4, 0.0}
+    \definecolor{HKS65-30}{cmyk}{0.195, 0.0, 0.3, 0.0}
+    \definecolor{HKS65-20}{cmyk}{0.13, 0.0, 0.2, 0.0}
+    \definecolor{HKS65-10}{cmyk}{0.065, 0.0, 0.1, 0.0}
+    \definecolor{HKS07-100}{cmyk}{0.0, 0.6, 1.0, 0.0}
+    \definecolor{HKS07-90}{cmyk}{0.0, 0.54, 0.9, 0.0}
+    \definecolor{HKS07-80}{cmyk}{0.0, 0.48, 0.8, 0.0}
+    \definecolor{HKS07-70}{cmyk}{0.0, 0.42, 0.7, 0.0}
+    \definecolor{HKS07-60}{cmyk}{0.0, 0.36, 0.6, 0.0}
+    \definecolor{HKS07-50}{cmyk}{0.0, 0.3, 0.5, 0.0}
+    \definecolor{HKS07-40}{cmyk}{0.0, 0.24, 0.4, 0.0}
+    \definecolor{HKS07-30}{cmyk}{0.0, 0.18, 0.3, 0.0}
+    \definecolor{HKS07-20}{cmyk}{0.0, 0.12, 0.2, 0.0}
+    \definecolor{HKS07-10}{cmyk}{0.0, 0.06, 0.1, 0.0}
+    % Benannte Farben
+    \definecolor{white}{gray}{1.00}
+    \definecolor{black}{gray}{0.00}
+    \definecolor{skyblue}{cmyk}{0.4, 0.2, 0.0, 0.0}             % HKS44-40
+    \definecolor{blue}{cmyk}{1.0, 0.5, 0.0, 0.0}                % HKS44-100
+    \definecolor{lightblue}{cmyk}{0.7, 0.35, 0.0, 0.0}          % HKS44-70
+    \definecolor{darkblue}{rgb}{0.04, 0.16, 0.32}               % 
+    \definecolor{extradarkblue}{cmyk}{1.00, 0.70, 0.10, 0.50}   % HKS41-100
+    \definecolor{darkgreen}{cmyk}{1.0, 0.0, 0.9, 0.2}           % HKS57-100
+    \definecolor{green}{cmyk}{0.65, 0.0, 1.0, 0.0}              % HKS65-100
+    \definecolor{purple}{cmyk}{0.5, 1.0, 0.0, 0.0}              % HKS33-100
+    \definecolor{indigo}{cmyk}{0.8, 0.9, 0.0, 0.0}              % HKS36-100
+    \definecolor{gray}{gray}{0.59}
+    \definecolor{darkgray}{gray}{0.50}
+    \definecolor{darkcyan}{cmyk}{0.87, 0.4, 0.4, 0.0}
+    \definecolor{cyan}{cmyk}{0.78, 0.19, 0.01, 0.0}
+    \definecolor{lightcyan}{cmyk}{0.39, 0.095, 0.005, 0.0}
+    \definecolor{extralightcyan}{cmyk}{0.16, 0.1, 0.0, 0.0}
+
+
+%
+% Miscelauneous
+%
+\newcommand{\dividingRule}[1]{\colorlet{tempCurrentColor}{.}\color{#1}\rule{\textwidth}{.2pt}\color{tempCurrentColor}}
+
+% Highlighting. Usage: \highlight{text}
+\definecolor{highlightColor}{cmyk}{1.00, 0.70, 0.10, 0.50}
+\newcommand{\highlight}[1]{\colorlet{tempCurrentColor}{.}\color{highlightColor}#1\color{tempCurrentColor}\xspace}
+
+% Marking todo's. Usage: \todo{my open task}
+%\definecolor{todoColor}{cmyk}{0, 1.00, 1.00, 0.00}
+%\newcommand{\todo}[1]{\colorlet{tempCurrentColor}{.}\color{todoColor}\i{/* #1 */}\color{tempCurrentColor}\xspace}
+
+% Quote environment with small text in italic and 75% lighter using xcolor
+\expandafter\def\expandafter\quote\expandafter{\quote\color{.!50!HKS44-40}\textbf{``}\it\small}
+
+% Mehrere eigene Umgebungen für schnellere Formatierung
+\newenvironment{enumroman}
+	{\begin{enumerate}[label=\roman*),labelindent=\parindent]\setlength{\labelsep}{1em}}
+	{\end{enumerate}}
+\newenvironment{enum}
+	{\begin{itemize}\setlength{\labelsep}{1em}}
+	{\end{itemize}}
+\newenvironment{enumalpha}
+	{\begin{enumerate}[label=\alph*),labelindent=\parindent]\setlength{\labelsep}{1em}}
+	{\end{enumerate}}
+\newenvironment{enumarabic}
+	{\begin{enumerate}[label=\arabic*),labelindent=\parindent]\setlength{\labelsep}{1em}}
+	{\end{enumerate}}
+\newenvironment{enumequiv}
+	{\begin{enumerate}[label=(\roman*),align=right,labelindent=\parindent]\setlength{\labelsep}{1em}}
+	{\end{enumerate}}
+
+
+% matrix-Umgebungen um Ausrichtung und vlines erweitert
+%\makeatletter
+%\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+%  \hskip -\arraycolsep
+%  \let\@ifnextchar\new@ifnextchar
+%  \array{#1}}
+%\makeatother
+%
+%% Beweisumgebung
+%\renewcommand*\proofname{Beweis}
+%\makeatletter\renewenvironment{proof}[1][\proofname]{
+%	\colorlet{@tempCurrentColor}{.}\color{.!70}\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries #1\@addpunct{:}]~\newline\ignorespaces
+%}{
+%  \popQED\endtrivlist\@endpefalse\color{@tempCurrentColor}
+%}\makeatother
+%
+%% Environments for terms with indented description text following
+%\makeatletter\newenvironment{term}[1]{
+%	\par\hangindent=3em\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries #1]
+%}{
+%	\endtrivlist
+%}\makeatother
+%
+%
+%\makeatletter
+%\patchcmd{\Gin@ii}
+%  {\begingroup}
+%  {\begingroup\renewcommand{\@latex@error}[2]{\includegraphics[width=0.2\textwidth]{images/placeholder}}}
+%  {}
+%  {}
+%	\makeatother
+
+%
+% Fine little colored boxes
+%
+%
+
+% [jjs]ColorBox - using xcolor
+% \begin{jjsColorBox}[optBgColor] .. \end{jjsColorBox}
+\definecolor{jjsColorBoxBorderColor}{cmyk}{0,0,0,1}
+\makeatletter\newenvironment{jjsColorBox}[1][white]{
+	\colorlet{@tempInfoColor}{#1}\colorlet{@tempInfoColor2}{jjsColorBoxBorderColor}\par\vspace{\baselineskip}\noindent\begin{lrbox}{\@tempboxa}\begin{minipage}[b]{\linewidth}
+}{
+	\end{minipage}\end{lrbox}\setlength{\fboxsep}{3pt}\fcolorbox{@tempInfoColor2}{@tempInfoColor}{\usebox{\@tempboxa}}\par\noindent
+}\makeatother
+
+% Zusatz-Info Boxen
+%\makeatletter\newenvironment{info}{\begin{jjsColorBox}[HKS57-20]\color{.!90}
+%}{\end{jjsColorBox}}\makeatother
+
+
+%
+% Sätze, Definitionen, Theoreme
+%
+\theoremstyle{definition}
+\newshadetheorem{theorems}{Theorem}
+\newshadetheorem{corollaries}{Korollar}
+\newshadetheorem{lemmas}{Lemma}
+\newshadetheorem{axioms}{Axiom}
+\newshadetheorem{sentences}{Satz}
+\newshadetheorem{definitions}{Definition}
+\newshadetheorem{cites}{Zitat}
+\newshadetheorem{example}{Beispiel}
+
+\newenvironment{theorem}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{.5pt}
+	\begin{theorems}[#1]\hspace*{1mm}
+}{\end{theorems}}
+
+\newenvironment{definition}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{.5pt}
+	\begin{definitions}[#1]\hspace*{1mm}
+}{\end{definitions}}
+
+\newenvironment{sentence}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{.5pt}
+	\begin{sentences}[#1]\hspace*{1mm}
+}{\end{sentences}}
+
+\newenvironment{corollary}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{.5pt}
+	\begin{corollaries}[#1]\hspace*{1mm}
+}{\end{corollaries}}
+
+\newenvironment{lemma}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{.5pt}
+	\begin{lemmas}[#1]\hspace*{1mm}
+}{\end{lemmas}}
+
+\newenvironment{axiom}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{0.7pt}
+	\begin{axioms}[#1]\hspace*{1mm}
+}{\end{axioms}}
+
+\newenvironment{citebox}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{0.7pt}
+	\begin{cites}[#1]\hspace*{1mm}
+}{\end{cites}}
+
+\newenvironment{examplebox}[1][]{
+	\colorlet{shadethmcolor}{HKS44-20}
+	\colorlet{shaderulecolor}{HKS41-80}
+	\setlength{\shadeboxrule}{0.7pt}
+	\begin{example}[#1]\hspace*{1mm}
+}{\end{example}}
+
+
+\newcommand{\tikzmark}[1]{\tikz[overlay,remember picture] \node (#1) {};}
+
+%\newcommand{\AND}[0]{\wedge}
+%\newcommand{\OR}[0]{\vee}
+\providecommand{\abs}[1]{\lvert#1\rvert}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\usepackage{xparse}
+
+\NewDocumentCommand{\DrawBox}{s O{}}{%
+    \tikz[overlay,remember picture]{
+    \IfBooleanTF{#1}{%
+        \coordinate (RightPoint) at ($(left |- right)+(\linewidth-\labelsep-\labelwidth,0.0)$);
+    }{%
+        \coordinate (RightPoint) at (right.east);
+    }%
+    \draw[red,#2]
+      ($(left)+(-0.2em,0.9em)$) rectangle
+      ($(RightPoint)+(0.2em,-0.3em)$);}
+}
+
+\NewDocumentCommand{\DrawBoxWide}{s O{}}{%
+    \tikz[overlay,remember picture]{
+    \IfBooleanTF{#1}{%
+        \coordinate (RightPoint) at ($(left |- right)+(\linewidth-\labelsep-\labelwidth,0.0)$);
+    }{%
+        \coordinate (RightPoint) at (right.east);
+    }%
+    \draw[red,#2]
+      ($(left)+(-\labelwidth,0.9em)$) rectangle
+      ($(RightPoint)+(0.2em,-0.3em)$);}
+}
+
+
+\newcommand{\ltlNext}[1]{\mathcal{X}#1}
+\newcommand{\ltlGlobal}[1]{\mathcal{G}#1}
+\newcommand{\ltlFuture}[1]{\mathcal{F}#1}
+\newcommand{\ltlUntil}[2]{#1\mathcal{U}#2}
+\newcommand{\ltlWeak}[2]{#1\mathcal{W}#2}
+\newcommand{\ltlRelease}[2]{#1\mathcal{R}#2}
+\newcommand{\ctlE}[0]{\mathcal{E}}
+\newcommand{\ctlA}[0]{\mathcal{A}}

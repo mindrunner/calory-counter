@@ -1,0 +1,108 @@
+\documentclass[a4paper, 12pt]{scrartcl} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\input{include/header}
+\usepackage{lmodern}
+\usepackage{hyperref}
+\usepackage{longtable}
+\usepackage{abbrevs}
+\usepackage[toc]{glossaries} % nomain, if you define glossaries in a file, and you use \include{INP-00-glossary}
+\makeglossaries
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+\makeatletter
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+  \begin{flushright} % Right align
+    {\LARGE\@title}\\ % Increase the font size of the title
+    \vspace{50pt} % Some vertical space between the title and author name
+    {\large\@author} % Author name
+    \\\@date % Date
+    \vspace{40pt} % Some vertical space between the author block and abstract
+  \end{flushright}
+}
+\title{\textbf{INX 365 Assignment 2}\\ % Title
+Distributed Communication} % Subtitle
+\author{\textsc{Lukas Elsner \\ n9224262} % Author
+\\{\textit{Queensland University of Technology}}} % Institution
+\date{\today} % Date
+\begin{document}
+\maketitle % Print the title section
+\thispagestyle{empty}
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+\vspace{10em}
+\begin{abstract}
+The task was to develop a client/server application for professional dietitians
+using C and BSD sockets. The server should load a csv-file with food and their
+nutrition values. Furthermore, it must handle multiple client sessions at once.
+Every client can query food by search terms and add new food to the list. This
+document covers the implementation report, as well as occurred problems while
+implementing the application.
+\end{abstract}
+\newpage
+\tableofcontents
+\newpage
+%\hspace*{3,6mm}\textit{Keywords:} lorem , ipsum , dolor , sit amet , lectus % Keywords
+%\vspace{30pt} % Some vertical space between the abstract and first section
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+\section{Statement of Completeness}
+
+All three tasks has been implemented as requested. Some minor additional changes
+were made. This report will cover the implementation details, as well as the
+additional changes.
+
+\subsection{Basic Functionality}
+
+The following basic functionality was implemented:
+\begin{itemize}
+    \item Server automatically loads calories.csv from the current path. If the
+      csv-file is in the same directory as the server binary, it must be run
+      from this directory.
+    \item The server's listening port can be changed with help of a command
+      line parameter
+    \item The server initiates a clean shutdown when it receives the SIGINT
+      signal.
+    \item The server can handle 10 client connections in parallel. A
+      producer/consumer pattern was used, as Task 2 suggested this.
+    \item Food can be added from a client by pressing `a' and then following
+      the on screen instructions to supply the needed attributes.
+    \item The client accepts two command line parameters. The server's
+      IP-address and its port.
+    \item When the user enters a food name, the server processes the request
+      and sends the search results back to the client.
+    \item If a search query results in no findings, an appropriate error message
+      is printed on the client side.
+    \item The client can be shut down by pressing `q'
+  \end{itemize}
+
+In addition to that, the following extras were implemented:
+\begin{itemize}
+  \item Running the client or server with $-h$ parameter will print the usage help.
+    \item The client connects to 127.0.0.1 on port 12345 when started without parameters.
+    \item The client connects to 127.0.0.1 on given port with only one parameter.
+\end{itemize}
+
+\subsection{Process Synchronisation and Coordination}
+
+\subsubsection{Connection handling}
+To be able to handle multiple connections, a thread pool is created. Ten threads are consuming the clients produced by the server thread. A consumer/producer pattern has been used with help of mutexed, semaphores and a rotating array for the data which has to be accessed by multiple threads.
+
+\subsubsection{Data handling}
+All food is stored in a linked list. Multiple threads can read the list at any time, but only one thread can write. This is implemented by the Reader/Writer pattern from lecture 5.
+
+\subsection{Non-Functionality}
+Valgrind confirmed that there are no possible memory leaks, even
+after a long runtime of both the client and the server.\\
+Also, the code is well commented and a doxygen reference manual was created. \\
+There are no known issues regarding to unexpected behavior, such as crashes.
+
+%----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY
+%----------------------------------------------------------------------------------------
+%\bibliographystyle{IEEEtran}
+%\bibliography{bibtex}
+%----------------------------------------------------------------------------------------
+%\printindex
+%\printglossaries
+%\listoffigures
+%\listoftables
+\end{document}
